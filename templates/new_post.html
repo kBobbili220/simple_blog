@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="create-post-wrapper">
+        <div class="create-post">
+            <form action ="/" method="POST">
+                <input type="text" name="title" placeholder="Post Title" class="title-input" required>
+                <input type="text" name="author" placeholder="Author" class="author-input" required>
+                <textarea name="body" placeholder="Write Your Blog Here..." class = "body-input" required></textarea>
+                <button type="submit" class="create-button">Create Post</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <div class="post-container">
+        <h1>{{ post.title }}</h1>
+        <h2>Written By {{ post.author }}</h2>
+        <p>{{ post.body }}</p>
+
+        <div class="post-actions">
+            <form action="{{ url_for('delete_post', id=post.id) }}" method="POST" onsubmit="return confirm('Confirm Delete?')">
+                <button type="submit" class="delete-button">Delete Post</button>
+            </form>
+            <a href="{{ url_for('index') }}" class="return-home-button">Back to Home</a>
+        </div>
+    </div>
+{% endblock %}
