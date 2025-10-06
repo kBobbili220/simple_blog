@@ -1,0 +1,348 @@
+// ---------- variables ----------
+$bg-color: #f4f7fb;
+$card-bg: #ffffff;
+$text-color: #222222;
+$accent-color: #2563eb; // main blue
+$accent-hover: darken($accent-color, 12%);
+$danger-color: #ef4444;
+$danger-hover: darken($danger-color, 10%);
+$shadow-color: rgba(16,24,40,0.06);
+$max-page-width: 1000px;
+
+$button-bg: $accent-color;      // defined so old refs work
+$button-hover: $accent-hover;
+$card-shadow: 0 10px 25px $shadow-color;
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
+  background: $bg-color;
+  color: $text-color;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+// -----------------------------------------
+// CREATE POST PAGE (Matches Homepage Style)
+// -----------------------------------------
+.create-post-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, lighten($bg-color, 3%), darken($bg-color, 3%));
+  padding: 20px;
+}
+
+.create-post {
+  background: $card-bg;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  padding: 40px 35px;
+  box-shadow: 0 20px 45px rgba(16, 24, 40, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    color: $accent-color;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      font-size: 1.05rem;
+      color: $text-color;
+      background-color: #fafafa;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+      &:focus {
+        border-color: $accent-color;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        outline: none;
+        background-color: #fff;
+      }
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .create-button {
+      width: 100%;
+      background: linear-gradient(180deg, $accent-color, darken($accent-color, 6%));
+      color: white;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 30px rgba(37, 99, 235, 0.25);
+        background: linear-gradient(180deg, $accent-hover, darken($accent-hover, 6%));
+      }
+    }
+
+    .cancel-post-button {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      font-weight: 600;
+      color: $accent-color;
+      border: 2px solid $accent-color;
+      border-radius: 999px;
+      text-decoration: none;
+      background: transparent;
+      transition: all 0.25s ease;
+      margin-top: 6px;
+
+      &:hover {
+        background: $accent-color;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
+      }
+    }
+  }
+}
+
+
+// Blog Detail Page
+.post-container {
+    max-width: 800px;
+    margin: 60px auto;
+    background: $card-bg;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 12px 25px $shadow-color;
+    color: $text-color;
+}
+
+/* Title and author styling */
+.post-container h1 {
+    font-size: 2.2rem;
+    text-align: center;
+    color: $accent-color;
+    margin-bottom: 10px;
+}
+
+.post-container h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 400;
+    color: darken($text-color, 10%);
+    margin-bottom: 30px;
+}
+
+/* Post body */
+.post-container p {
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: $text-color;
+    white-space: pre-line;
+    margin-bottom: 40px;
+}
+
+/* Button container */
+.post-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.delete-button,
+.return-home-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.delete-button {
+    background-color: $danger-color;
+    color: #fff;
+
+    &:hover {
+        background-color: $danger-hover;
+        transform: scale(1.05);
+    }
+}
+
+.return-home-button {
+    background-color: $accent-color;
+    color: #fff;
+
+    &:hover {
+        background-color: $accent-hover;
+        transform: scale(1.05);
+    }
+}
+
+// ---------- page container (centers everything) ----------
+.homepage {
+  max-width: $max-page-width;
+  margin: 72px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;     
+  gap: 32px;
+  width: 100%;
+}
+
+// heading
+.homepage > h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: $accent-color;
+  letter-spacing: 0.4px;
+  text-align: center;
+}
+
+// ---------- New Post CTA (clean pill) ----------
+.new-post-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.new-post-button a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: linear-gradient(180deg, $button-bg, darken($button-bg, 4%));
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.new-post-button a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(37,99,235,0.20);
+  background: linear-gradient(180deg, $button-hover, darken($button-hover, 4%));
+}
+
+// ---------- posts grid: cards side-by-side on wide screens ----------
+.posts-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: start;
+  justify-items: stretch;
+}
+
+/* each post card */
+.post {
+  background: $card-bg;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: $card-shadow;
+  border: 1px solid rgba(16,24,40,0.03);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+}
+
+/* subtle accent bar at top of card */
+.post::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, $accent-color, lighten($accent-color, 18%));
+}
+
+/* hover lift */
+.post:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(16,24,40,0.12);
+}
+
+/* card link */
+.post a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+/* title & meta inside card */
+.post h2 {
+  margin: 8px 0 10px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $accent-color;
+}
+
+.post .meta {
+  margin: 0 0 12px 0;
+  font-size: 0.9rem;
+  color: darken($text-color, 18%);
+  font-style: italic;
+}
+
+/* excerpt trims visually (preserve spacing) */
+.post .excerpt {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: darken($text-color, 8%);
+  margin-top: auto; /* pushes excerpt above CTA if card grows */
+}
+
+/* small "Read more" within card bottom */
+.post .read-more {
+  margin-top: 14px;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: $accent-color;
+}
+
+/* responsive tweaks */
+@media (max-width: 520px) {
+  .homepage { margin: 32px auto; padding: 0 14px; gap: 20px; }
+  .homepage > h1 { font-size: 2.0rem; }
+  .posts-container { gap: 16px; }
+}
